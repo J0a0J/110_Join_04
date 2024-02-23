@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.feb.test.dao.MemberDao">
+
+	<!-- public int join(String memberId); -->
+	<insert id="join" parameterType="java.util.HashMap">
+		INSERT INTO lecture.member (member_id, member_name, passwd, email, join_dtm) 
+		VALUES(
+		#{memberId},
+		#{memberName},
+		#{passwd},
+		#{email},
+		to_char(now(), 'YYYYMMDDHH24MISS')
+		)
+	</insert>
+	<!-- public int searchId(String id) -->
+	<select id="searchId" parameterType="String">
+		SELECT COUNT(*)
+		FROM lecture."member"
+		WHERE member_id = #{memberId};
+	</select>
+
+</mapper>
+
